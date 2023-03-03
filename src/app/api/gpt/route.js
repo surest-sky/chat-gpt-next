@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { NextResponse } from 'next/server'
-import { console } from 'next/dist/compiled/@edge-runtime/primitives/console'
+
+const proxy = {
+    protocol: 'https',
+    host: "127.0.0.1",
+    port: 1087,
+};
 
 const connectOpenApi = async (messages) => {
     try {
@@ -16,10 +21,12 @@ const connectOpenApi = async (messages) => {
                     'User-Agent': 'Apifox/1.0.0 (https://www.apifox.cn)',
                     'Content-Type': 'application/json',
                 },
+                proxy: proxy
             }
         );
         return response.data
     } catch (error) {
+        console.log(error.message)
         throw new Error('error')
     }
 }

@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79ce7e0a-6e2d-46b4-b79b-a2c08fad56cf" name="变更" comment="next 接入 chat">
+      <change afterPath="$PROJECT_DIR$/node.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/api/gpt/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/gpt/route.js" afterDir="false" />
     </list>
@@ -73,7 +74,7 @@
       <workItem from="1677748450882" duration="195000" />
       <workItem from="1677748865052" duration="5230000" />
       <workItem from="1677824614247" duration="5003000" />
-      <workItem from="1677829724898" duration="8012000" />
+      <workItem from="1677829724898" duration="13193000" />
     </task>
     <task id="LOCAL-00001" summary="next 接入 chat">
       <created>1677837291045</created>
