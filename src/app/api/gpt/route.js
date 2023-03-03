@@ -1,12 +1,15 @@
 import axios from 'axios';
+import { SocksProxyAgent } from 'socks-proxy-agent';
 import { NextResponse } from 'next/server'
 
 const proxy = {
-    protocol: 'https',
-    host: "127.0.0.1",
-    port: 1087,
+    hostname: '127.0.0.1',
+    port: 1080,
+    protocol: 'socks5:',
+    // 对于 socks5 协议，需要以冒号结尾，否则会出现“protocol mismatch”错误。
 };
 
+const agent = new SocksProxyAgent(proxy);
 const connectOpenApi = async (messages) => {
     try {
         const response = await axios.post(
@@ -21,7 +24,7 @@ const connectOpenApi = async (messages) => {
                     'User-Agent': 'Apifox/1.0.0 (https://www.apifox.cn)',
                     'Content-Type': 'application/json',
                 },
-                proxy: proxy
+                httpsAgent: agent
             }
         );
         return response.data
