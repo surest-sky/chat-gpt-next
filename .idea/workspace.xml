@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79ce7e0a-6e2d-46b4-b79b-a2c08fad56cf" name="变更" comment="线上测试代理">
+    <list default="true" id="79ce7e0a-6e2d-46b4-b79b-a2c08fad56cf" name="变更" comment="新增代理支持">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/api/gpt/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/gpt/route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +75,7 @@
       <workItem from="1677748450882" duration="195000" />
       <workItem from="1677748865052" duration="5230000" />
       <workItem from="1677824614247" duration="5003000" />
-      <workItem from="1677829724898" duration="14284000" />
+      <workItem from="1677829724898" duration="15690000" />
     </task>
     <task id="LOCAL-00001" summary="next 接入 chat">
       <created>1677837291045</created>
@@ -89,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677846733321</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="新增代理支持">
+      <created>1677847823996</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677847823996</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,7 +110,8 @@
     <MESSAGE value="next 接入 chatGpt" />
     <MESSAGE value="next 接入 chat" />
     <MESSAGE value="线上测试代理" />
-    <option name="LAST_COMMIT_MESSAGE" value="线上测试代理" />
+    <MESSAGE value="新增代理支持" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增代理支持" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

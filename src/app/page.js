@@ -2,12 +2,13 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
-import { Avatar, Button, Spin, Message, Input } from '@arco-design/web-react'
+import { Avatar, Drawer, Button, Spin, Message, Input } from '@arco-design/web-react'
 import {
     IconPlus,
     IconDelete,
     IconLock,
     IconMessage,
+    IconMenuFold
 } from '@arco-design/web-react/icon'
 
 const TextArea = Input.TextArea
@@ -19,6 +20,8 @@ function ChatInterface () {
     const [currentMessages, setCurrentMessages] = useState([])
     const [messageList, setMessageList] = useState([])
     const [pending, setPending] = useState(false);
+    const [isMobile, setIsMobile] = useState(true)
+    const [visible, setVisible] = useState(false)
     const mKey = 'local-chat'
 
 
@@ -26,8 +29,9 @@ function ChatInterface () {
         setMLoading(true)
         loadLocalChats()
         setMLoading(false)
-
         document.addEventListener('keydown', () => listenSend)
+        setIsMobile(getIsMobile(navigator.userAgent));
+
         return () => {
             document.removeEventListener('keydown', () => listenSend)
         }
@@ -151,6 +155,20 @@ function ChatInterface () {
         inputFocus()
     }
 
+    const getIsMobile = userAgent => {
+        if (
+            userAgent.match(/Android/i) ||
+            userAgent.match(/webOS/i) ||
+            userAgent.match(/iPhone/i) ||
+            userAgent.match(/iPad/i) ||
+            userAgent.match(/iPod/i) ||
+            userAgent.match(/BlackBerry/i) ||
+            userAgent.match(/Windows Phone/i)
+        )
+            return true;
+        return false;
+    };
+
     const Link = ({ text, Icon, onClick }) => {
         return <div
             onClick={onClick}
@@ -167,31 +185,54 @@ function ChatInterface () {
         </div>
     }
 
+    const Menu = () => {
+        return <div className={'md:w-56 bg-gray-900 p-2 flex flex-col h-full md:h-screen'}>
+            <button
+                onClick={createSession}
+                className="bg-transparent border border-white rounded-md px-4 py-2 w-full text-white hover:bg-white hover:text-gray-800">
+                <IconPlus/> 开始新对话
+            </button>
+            <div className={'menu-chats flex-1 py-2'}>
+                {
+                    mLoading
+                        ? <Spin className={'ml-2 mt-2'}/>
+                        : messageList.map(
+                            m => <MenuChat message={m} key={m.title}/>)
+                }
+            </div>
+            <div className={'menu-footer'}>
+                <Link text={'清除所有的会话'} onClick={clearSession}
+                      Icon={<IconDelete className={'mr-2'}/>}/>
+                <Link text={'免责申明'}
+                      Icon={<IconLock className={'mr-2'}/>}/>
+            </div>
+        </div>
+    }
+
     return (
         <main className={'flex'}>
-            <div className={'md:w-56 bg-gray-900 p-2 flex flex-col'}>
-                <button
-                    onClick={createSession}
-                    className="bg-transparent border border-white rounded-md px-4 py-2 w-full text-white hover:bg-white hover:text-gray-800">
-                    <IconPlus/> 开始新对话
-                </button>
-                <div className={'menu-chats flex-1 py-2'}>
-                    {
-                        mLoading
-                            ? <Spin className={'ml-2 mt-2'}/>
-                            : messageList.map(
-                                m => <MenuChat message={m} key={m.title}/>)
-                    }
-                </div>
-                <div className={'menu-footer'}>
-                    <Link text={'清除所有的会话'} onClick={clearSession}
-                          Icon={<IconDelete className={'mr-2'}/>}/>
-                    <Link text={'免责申明'}
-                          Icon={<IconLock className={'mr-2'}/>}/>
-                </div>
-            </div>
+            {
+                isMobile ? <>
+                    <Drawer
+                        placement={'left'}
+                        width={'80vw'}
+                        footer={null}
+                        title={<span>菜单</span>}
+                        visible={visible}
+                        onOk={() => {
+                            setVisible(false);
+                        }}
+                        onCancel={() => {
+                            setVisible(false);
+                        }}
+                    >
+                        <Menu />
+                    </Drawer>
+                    <IconMenuFold onClick={() => setVisible(!visible)} className={'absolute left-3 top-3 text-2xl'}/>
+                </> : <Menu />
+            }
             <div className="h-screen flex-grow flex flex-col flex-1">
-                <div className="flex-1 bg-gray-100 py-4 px-4 overflow-y-scroll chat-content" style={{ scrollBehavior: "smooth", paddingBottom: 50 }}>
+                <div className="pt-12 flex-1 bg-gray-100 py-4 px-4 overflow-y-scroll chat-content" style={{ scrollBehavior: "smooth", paddingBottom: 50 }}>
                     {
                         currentMessages.length === 0 && <h3 className={'font-bold block text-center'}>你可以说点什么...</h3>
                     }

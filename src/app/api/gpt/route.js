@@ -20,7 +20,7 @@ const connectOpenApi = async (messages) => {
             },
             {
                 headers: {
-                    Authorization: 'Bearer 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',
+                    Authorization: 'Bearer ***',
                     'User-Agent': 'Apifox/1.0.0 (https://www.apifox.cn)',
                     'Content-Type': 'application/json',
                 },
